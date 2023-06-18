@@ -9,13 +9,13 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const server = new Koa();
 
-    server.use(ironSession({
-        cookieName: 'iron-session/examples/next',
-        password: "aytoeinaitogamhmenopasswordgiatoironsession",
-        cookieOptions: {
-            secure: !dev,
-        },
-    }));
+    // server.use(ironSession({
+    //     cookieName: 'iron-session/examples/next',
+    //     password: "aytoeinaitogamhmenopasswordgiatoironsession",
+    //     cookieOptions: {
+    //         secure: !dev,
+    //     },
+    // }));
 
     server.use(async (ctx, next) => {
         // Custom middleware for logging or other processing

@@ -1,23 +1,10 @@
-// Another endpoint handler for "/api/world"
-export default function worldHandler(req, res) {
-  // Read the cookie
-  const cookie = req.headers.cookie;
 
-  console.log("REQ SESSON MESA STO WORLD")
+export default async function handler(req, res) {
+  const name = req.session.name || "Unknown";
 
-  console.log(req.session.name)
-  console.log(req.session.name)
-  console.log(req.session.name)
-  console.log(req.session.name)
-  console.log(req.session.name)
-  console.log(req.session.name)
-  console.log(req.session.name)
+  req.session.name = name + "O magkas";
+  await req.session.save();
 
-  // Do something with the cookie value
-  console.log("Cookie:", cookie);
-  console.log("NAME:", req.session.name);
-
-  // Send a response
-  // res.status(200).json({ message: "Cookie received" });
+  // res.status(200).json({ name });
   res.redirect("/secret-page")
 }

@@ -21,12 +21,6 @@ app.prepare().then(() => {
         // Custom middleware for logging or other processing
         console.log(`Received request: ${ctx.method} ${ctx.url}`);
 
-        ctx.session = {
-            name: "gianni"
-        }
-
-        await ctx.session.save();
-
         // Pass session data to Next.js context
         ctx.req.session = ctx.session;
 

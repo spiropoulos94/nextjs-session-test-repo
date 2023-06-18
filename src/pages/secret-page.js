@@ -1,15 +1,30 @@
+import { withIronSession } from 'next-iron-session';
+
+// Wrap getServerSideProps with withIronSession
+const withSession = (handler) => {
+    return withIronSession(handler, {
+        password: 'aytoeinaitogamhmenopasswordgiatoironsession',
+        cookieName: 'iron-session/examples/next',
+        cookieOptions: {
+            secure: process.env.NODE_ENV === 'production',
+        },
+    });
+};
+
 export default function SecretPage(props) {
 
-    console.log({ props })
-
-    return <h1>SECRET PAGE</h1>
+    return <h1>Hello {props.name}</h1>
 }
 
+// Original getServerSideProps function
 export async function getServerSideProps(context) {
-    // Fetch data or perform any server-side operations here
+    const session = context.req.session;
+
+    // Rest of your code
+
     return {
         props: {
-            name: "Niko"
-        }, // Add any data you want to pass as props to the component
+            name: session.name
+        },
     };
 }
